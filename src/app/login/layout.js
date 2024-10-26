@@ -6,9 +6,9 @@ export default function LoginPage({ onClose }) {
   const handleLogin = (e) => {
     e.preventDefault();
     // Perform login logic here (e.g., authentication)
-
+    var username = "johndoe"; // Assume the username is "johndoe"// needs to be pulled from database 
     // After successful login, navigate to [userPage]
-    router.push(`/userpage/${username}`);
+    router.push(`/userPage/${username}`);
     onClose(); // Close the login modal if needed
   };
 
