@@ -1,5 +1,4 @@
 "use client";
-
 import { useState } from "react";
 import Image from "next/image";
 import LoginPage from "./login/layout"; // Import the LoginPage component
