@@ -4,6 +4,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "./api/auth/[...nextauth]/route";
 import UserPage from "./userPage/[username]/page";
 import Navbar from "./components/Navbar";
+import LoggedInHeader from "./components/LoggedInHeader";
 
 const geistSans = localFont({
 	src: "./fonts/GeistVF.woff",
@@ -23,19 +24,24 @@ export const metadata = {
 
 export default async function RootLayout({ children }) {
 	const session = await getServerSession(authOptions);
-	console.log(session);
+
 	return (
 		<html lang="en">
 			<body
 				className={`${geistSans.variable} ${geistMono.variable} antialiased`}
 			>
-				<Navbar />
 				{session && (
 					<div className="">
+						<LoggedInHeader />
 						<UserPage />
 					</div>
 				)}
-				{!session && <div className="max-w-lg mx-auto">{children}</div>}
+				{!session && (
+					<div className="">
+						<Navbar />
+						{children}
+					</div>
+				)}
 			</body>
 		</html>
 	);
