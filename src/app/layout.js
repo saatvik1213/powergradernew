@@ -24,19 +24,25 @@ export const metadata = {
 	title: "PowerGrader",
 	description: "Automate the grading process with PowerGrader",
 };
-
 async function getuserid(useremail) {
-	fetch("http://localhost:5000/get_user_id?email=" + userid, {
-		method: "GET"
-	
-	})
-		.then((res) => res.json())
-		.then((data) => {
-			console.log(data);
-			return data;
-			
-		});
+    try {
+        const response = await fetch(`http://localhost:5000/get_user_id?email=${encodeURIComponent(useremail)}`, {
+            method: "GET"
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log(data);
+        return data.user; // Assuming `data.user` is the ID
+    } catch (error) {
+        console.error("Error fetching user ID:", error);
+        return null; // Return null or handle the error as needed
+    }
 }
+
 async function createClass(classname, userid) {
     const response = await fetch("http://localhost:5000/class", {
         method: "POST",
@@ -107,11 +113,12 @@ export default async function RootLayout({ children }) {
 	const user = session?.user;
 	const username = user?.name;
 	const email = user?.email;
-	classid.id = await createClass("test", "1");
-	createuser(email, username, classid);
-	userid = await getuserid(email);
-	const createClass = await createClass("test", userid);
-	const role =  await checkgrader();
+	var classid = await createClass("test", "1");
+	classid = classid.id;
+	const userid = await getuserid(email);
+	console.log( await userid);
+	const role =  await checkgrader(userid);
+	console.log(role);
 	return (
 		<html lang="en">
 			<body
