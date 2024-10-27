@@ -47,13 +47,13 @@ The following diagram illustrates the main uses cases expected in the functional
 
 The sequence diagrams below show the details of the workflow in use cases ```Log in``` and ```Submit Assignment```
 
-    Log In
-
-![sequence_diagrams](/images/3_sequence_2.png)
-
     Submit Assignment
 
 ![sequence_diagrams](/images/2_sequence_1.png)
+
+    Log In
+
+![sequence_diagrams](/images/3_sequence_2.png)
 
 #### Conceptual ER Diagram
 
