@@ -1,5 +1,8 @@
 import localFont from "next/font/local";
 import "./globals.css";
+import { getServerSession } from "next-auth";
+import { authOptions } from "./api/auth/[...nextauth]/route";
+import UserPage from "./userPage/[username]/page";
 
 const geistSans = localFont({
 	src: "./fonts/GeistVF.woff",
@@ -13,17 +16,20 @@ const geistMono = localFont({
 });
 
 export const metadata = {
-  title: "PowerGrader",
-  description: "Automate the grading process with PowerGrader",
+	title: "PowerGrader",
+	description: "Automate the grading process with PowerGrader",
 };
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+	const session = await getServerSession(authOptions);
+	console.log(session);
 	return (
 		<html lang="en">
 			<body
 				className={`${geistSans.variable} ${geistMono.variable} antialiased`}
 			>
-				{children}
+				{session && <div className=""><UserPage /></div>}
+				{!session && <div className="max-w-lg mx-auto">{children}</div>}
 			</body>
 		</html>
 	);

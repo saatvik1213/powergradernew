@@ -1,10 +1,12 @@
-"use client";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../../api/auth/[...nextauth]/route";
 
-export default function UserPage() {
-  const router = useRouter();
-  const username = router.query?.username; // Use optional chaining to safely access username
+export default async function UserPage() {
+  // const router = useRouter();
+  const session = await getServerSession(authOptions);
+  const username = session?.user.name;
 
   // Sample classes data (replace with actual data)
   const classes = [

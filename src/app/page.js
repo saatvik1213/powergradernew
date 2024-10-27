@@ -3,6 +3,7 @@ import { useState } from "react";
 import Image from "next/image";
 import LoginPage from "./login/layout"; // Import the LoginPage component
 import SigninPage from "./signin/layout"; // Import the SigninPage component
+import { signIn } from "next-auth/react";
 
 export default function HomePage() {
   const [showLogin, setShowLogin] = useState(false);
@@ -37,7 +38,7 @@ export default function HomePage() {
     <div className="space-x-6 flex">
       <button
         className="px-4 py-2 font-semibold text-white bg-blue-600 rounded"
-        onClick={handleLoginClick}
+        onClick={() => signIn("google")}
       >
         Login
       </button>
