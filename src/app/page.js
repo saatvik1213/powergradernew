@@ -1,5 +1,5 @@
-"use client";
-import { useState } from "react";
+//"use client";
+//import { useState } from "react";
 import Image from "next/image";
 import LoginPage from "./login/layout"; // Import the LoginPage component
 import SigninPage from "./signin/layout"; // Import the SigninPage component

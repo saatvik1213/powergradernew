@@ -7,6 +7,8 @@ export default async function UserPage() {
   // const router = useRouter();
   const session = await getServerSession(authOptions);
   const username = session?.user.name;
+  const id = session?.user.email;
+  //const result = client.query('SELECT * FROM users where user_id == $1',[id]);
 
   // Sample classes data (replace with actual data)
   const classes = [

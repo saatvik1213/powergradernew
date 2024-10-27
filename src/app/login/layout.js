@@ -1,6 +1,6 @@
 "use client"
 import { useRouter } from "next/navigation";
-import { client } from "../database";
+//import { client } from "../database";
 
 
 import react, {useState} from 'react'
@@ -11,23 +11,23 @@ export default function LoginPage({ onClose }) {
     e.preventDefault();
     try {
       // Run a SELECT query on the users table
-      const result = client.query('SELECT * FROM users where user_id == $1',[id]);
+      //const result = client.query('SELECT * FROM users where user_id == $1',[id]);
 
-      user = result.rows[0]
-      var username = user.id;
-      if (user.role === "Grader"){
-        router.push(`/userPage/${username}`);
-      }
-      else if (user.role === "Owner"){
+      //var user = result.rows[0]
+      // var username = user.id;
+      // if (user.role === "Grader"){
+      //   router.push(`/userPage/${username}`);
+      // }
+      // else if (user.role === "Owner"){
         
-        router.push(`/ownerPage/`);
-      }
+      //   router.push(`/ownerPage/`);
+      // }
       // Respond with the result rows
       // if (result.rows.length === 0) {
       //   return res.status(404).json({ error: 'User not found' });
       // }
     
-      const user = result.rows[0];
+     // var user = result.rows[0];
     } 
     catch (error) {
       console.error('Database Error:', error);
@@ -36,9 +36,9 @@ export default function LoginPage({ onClose }) {
     
 
     // Perform login logic here (e.g., authentication)
-    var username = "johndoe"; // Assume the username is "johndoe"// needs to be pulled from database 
+     // Assume the username is "johndoe"// needs to be pulled from database 
     // After successful login, navigate to [userPage]
-    router.push(`/userpage/${username}`);
+ 
     onClose(); // Close the login modal if needed
   };
 

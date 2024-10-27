@@ -1,16 +1,16 @@
-const fs = require('fs');
-const pg = require('pg');
-const url = require('url');
+const fs = require("fs");
+const pg = require("pg");
+const url = require("url");
 
 const config = {
-    user: "avnadmin",
-    password: "AVNS_c1QOQVfn2aet6BCtbVv",
-    host: "pg-375985cb-saatvik1213-8794.f.aivencloud.com",
-    port: 10339,
-    database: "defaultdb",
-    ssl: {
-        rejectUnauthorized: true,
-        ca: `-----BEGIN CERTIFICATE-----
+	user: "avnadmin",
+	password: "AVNS_c1QOQVfn2aet6BCtbVv",
+	host: "pg-375985cb-saatvik1213-8794.f.aivencloud.com",
+	port: 10339,
+	database: "defaultdb",
+	ssl: {
+		rejectUnauthorized: true,
+		ca: `-----BEGIN CERTIFICATE-----
 MIIEQTCCAqmgAwIBAgIUZZPTSib6Nxx4KcVwnIHpYfLCr4QwDQYJKoZIhvcNAQEM
 BQAwOjE4MDYGA1UEAwwvMzk5NmIwOWQtZDIxZi00NTRmLWE4OTctZTQ2ODZmMmY1
 MmRlIFByb2plY3QgQ0EwHhcNMjQxMDI2MjI0MzQ0WhcNMzQxMDI0MjI0MzQ0WjA6
@@ -35,22 +35,18 @@ l9Y4mpF9DwwDxyG4HoskSl7p+ghSAHFdgNtp35yJf3B2hBkZl1YK0DikZUSHiOjM
 dDNgkMhirN3k/nqzYLGpUF8aEpf5FfQahYSpXD1jNHZfco0B7c9cW/PsaBnRr3IO
 YdIQdVhqPuZgZt0VxRn1ke6HgK9EltrFYPptgcm/JXTcyChEDQ==
 -----END CERTIFICATE-----`,
-    },
+	},
 };
 
 export const client = new pg.Client(config);
 client.connect(function (err) {
-    if (err)
-        throw err;
-    client.query("SELECT VERSION()", [], function (err, result) {
-        if (err)
-            throw err;
+	if (err) throw err;
+	client.query("SELECT VERSION()", [], function (err, result) {
+		if (err) throw err;
 
-        console.log(result.rows[0].version);
-        client.end(function (err) {
-            if (err)
-                throw err;
-        });
-    });
+		console.log(result.rows[0].version);
+		client.end(function (err) {
+			if (err) throw err;
+		});
+	});
 });
-
