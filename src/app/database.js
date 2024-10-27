@@ -38,7 +38,7 @@ YdIQdVhqPuZgZt0VxRn1ke6HgK9EltrFYPptgcm/JXTcyChEDQ==
     },
 };
 
-const client = new pg.Client(config);
+export const client = new pg.Client(config);
 client.connect(function (err) {
     if (err)
         throw err;
