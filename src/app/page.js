@@ -3,7 +3,23 @@ import { useState } from "react";
 import Image from "next/image";
 import LoginPage from "./login/layout"; // Import the LoginPage component
 import SigninPage from "./signin/layout"; // Import the SigninPage component
-
+async function getid(data) {
+	try {
+		const response = await fetch("http://localhost:5000/userid?" + data, {
+			method: "GET",
+		});
+  
+		if (!response.ok) {
+			console.log("Failed to submit data:", response.statusText);
+		}
+  
+		const result = await response.json(); // Parse the JSON response
+		console.log("Response from server:", result);
+		return result;
+	} catch (error) {
+		console.error("Error submitting data:", error);
+	}
+  }
 
 export default function HomePage() {
 	const [showLogin, setShowLogin] = useState(false);
@@ -11,6 +27,7 @@ export default function HomePage() {
 
 	const handleLoginClick = () => {
 		setShowLogin(true);
+		
 		setShowSignin(false); // Ensure Signin is closed when Login is open
 	};
 
@@ -21,6 +38,7 @@ export default function HomePage() {
 
 	const handleCloseLogin = () => {
 		setShowLogin(false);
+
 	};
 
 	const handleCloseSignin = () => {

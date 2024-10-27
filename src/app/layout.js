@@ -7,6 +7,8 @@ import Navbar from "./components/Navbar";
 import LoggedInHeader from "./components/LoggedInHeader";
 import Tabs from "./components/Tabs";
 
+
+
 const geistSans = localFont({
 	src: "./fonts/GeistVF.woff",
 	variable: "--font-geist-sans",

@@ -4,9 +4,17 @@ import { useRouter } from "next/navigation";
 
 
 import react, {useState} from 'react'
+
+
 export default function LoginPage({ onClose }) {
     const [error, setError] = useState('');
   const router = useRouter();
+  const [id, setId] = useState('');
+
+  tempid = getid(id);
+  setId(tempid);
+
+
   const handleLogin = (e) => {
     e.preventDefault();
     try {
@@ -34,7 +42,7 @@ export default function LoginPage({ onClose }) {
       setError('Usernotfound');
     }
     
-
+    
     // Perform login logic here (e.g., authentication)
      // Assume the username is "johndoe"// needs to be pulled from database 
     // After successful login, navigate to [userPage]
@@ -50,7 +58,7 @@ export default function LoginPage({ onClose }) {
           className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
         >
         </button>
-
+        
         <h1 className="text-3xl font-bold mb-6">Login to PowerGrader</h1>
 
         <form onSubmit={handleLogin} className="w-full">
@@ -86,7 +94,7 @@ export default function LoginPage({ onClose }) {
             Login
           </button>
         </form>
-
+        <p> {id}</p>
         <p className="mt-4 text-gray-600">
           Don’t have an account? <a href="/signup" className="text-blue-600">Sign Up</a>
         </p>
