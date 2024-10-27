@@ -70,7 +70,6 @@ def set_grader():
         del data['class_id']
         new_row = Users(**data)
         db.session.add(new_row)
-        db.session.commit()
     else:
         response = {"Error_code":"Data invalid"}
         return Response(json.dumps(response) , 500, mimetype="application/json")
