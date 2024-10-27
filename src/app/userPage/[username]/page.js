@@ -1,18 +1,19 @@
+// import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../../api/auth/[...nextauth]/route";
-import Classbox from "../../components/classes"; // Adjust path if necessary
+import { Classbox } from "../../components/classes";
 
 export default async function UserPage() {
+  // const router = useRouter();
   const session = await getServerSession(authOptions);
   const username = session?.user.name;
   const id = session?.user.email;
+  //const result = client.query('SELECT * FROM users where user_id == $1',[id]);
 
-  // Sample classes data (replace with actual data or fetch from DB)
+  // Sample classes data (replace with actual data)
   const classes = [
-    { id: "math-101", name: "Math 101" },
-    { id: "science-202", name: "Science 202" },
-    { id: "history-303", name: "History 303" },
+    <Classbox key="math-101" className="Math 101" />
   ];
 
   return (
@@ -23,7 +24,14 @@ export default async function UserPage() {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {classes.map((classItem) => (
-          <Classbox key={classItem.id} className={classItem.name} />
+          <Link
+          key={classItem.id}
+          href={`/userpage/${username}/class/${classItem.id}`}
+          className="p-4 bg-white shadow-md rounded-lg text-center hover:bg-blue-50"
+        >
+          <h2 className="text-xl font-semibold">{classItem.name}</h2>
+          <p className="mt-2 text-blue-600">View Details</p>
+        </Link>
         ))}
       </div>
     </div>

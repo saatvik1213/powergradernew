@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect } from 'react';
+import Classbox from "../components/classes" // Adjust the path as needed
 
 const OwnerPageLayout = () => {
     const [classes, setClasses] = useState([]);
@@ -36,7 +37,7 @@ const OwnerPageLayout = () => {
     // Add a class to the list and database
     const addClass = () => {
         if (newClass.trim() !== '') {
-            //saveClass(newClass);
+            saveClass(newClass);
             setNewClass('');
         }
     };
@@ -47,7 +48,7 @@ const OwnerPageLayout = () => {
             i === index ? { ...cls, grader: email } : cls
         );
         setClasses(updatedClasses);
-        updateGrader(classes[index].id, email); // Persist to database
+        // updateGrader API function would persist changes to the database
     };
 
     return (
@@ -74,17 +75,12 @@ const OwnerPageLayout = () => {
             {/* Classes Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {classes.map((cls, index) => (
-                    <div key={index} className="p-6 bg-white shadow-lg rounded-lg border border-gray-200">
-                        <h2 className="text-xl font-semibold mb-4 text-center">{cls.name}</h2>
-                        <input 
-                            type="email" 
-                            placeholder="Enter grader email" 
-                            value={cls.grader} 
-                            onChange={(e) => assignGrader(index, e.target.value)} 
-                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4"
-                        />
-                        <p className="text-center text-gray-600">Grader: {cls.grader || 'Not assigned'}</p>
-                    </div>
+                    <Classbox
+                        key={cls.id}
+                        className={cls.name}
+                        grader={cls.grader}
+                        onAssignGrader={(email) => assignGrader(index, email)}
+                    />
                 ))}
             </div>
         </div>
