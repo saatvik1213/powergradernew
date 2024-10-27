@@ -36,7 +36,7 @@ def create_admin():
         db.session.add(new_row)
         db.session.commit()
         response = {"User":new_row.id }
-        return Response(json.dumps(response) , 500, mimetype="application/json")
+        return Response(json.dumps(response) , 200, mimetype="application/json")
     else:
         response = {"Error_code":"Data invalid"}
         return Response(json.dumps(response) , 500, mimetype="application/json")
