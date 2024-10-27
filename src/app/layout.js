@@ -22,10 +22,10 @@ export const metadata = {
 	title: "PowerGrader",
 	description: "Automate the grading process with PowerGrader",
 };
-
 async function getuserid(useremail) {
-	fetch("http://localhost:5000/get_user_id?email=" + useremail, {
-		method: "GET",
+	fetch("http://localhost:5000/get_user_id?email=" + userid, {
+		method: "GET"
+	
 	})
 		.then((res) => res.json())
 		.then((data) => {
@@ -55,9 +55,12 @@ export default async function RootLayout({ children }) {
 	const user = session?.user;
 	const username = user?.name;
 	const email = user?.email;
-
-	const role = "user";
-	// const role =  await checkgrader(await getuserid(email));
+	var classid = await createClass("test", "1");
+	classid = classid.id;
+	const userid = await getuserid(email);
+	console.log( await userid);
+	const role =  await checkgrader(userid);
+	console.log(role);
 	return (
 		<html lang="en">
 			<body

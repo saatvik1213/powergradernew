@@ -10,12 +10,12 @@ import json
 def users():
     try:
         data = False
-        users = Users.query.filter_by(id=request.args["userId"]).first()
+        users = Users.query.filter_by(id=request.args["id"]).first()
         if users:
-            if users.ROLE == "Grader":
+            if users.role  == "grader":
                 data = True
 
-        response = {request.args["userId"]:data}
+        response = {request.args["id"]:data}
         return Response(json.dumps(response) , 200, mimetype="application/json")
     except:
         return Response({'error_code':"500"}, 500, mimetype="application/json")
@@ -36,7 +36,7 @@ def create_admin():
         db.session.add(new_row)
         db.session.commit()
         response = {"User":new_row.id }
-        return Response(json.dumps(response) , 500, mimetype="application/json")
+        return Response(json.dumps(response) , 200, mimetype="application/json")
     else:
         response = {"Error_code":"Data invalid"}
         return Response(json.dumps(response) , 500, mimetype="application/json")
@@ -70,7 +70,6 @@ def set_grader():
         del data['class_id']
         new_row = Users(**data)
         db.session.add(new_row)
-        db.session.commit()
     else:
         response = {"Error_code":"Data invalid"}
         return Response(json.dumps(response) , 500, mimetype="application/json")
@@ -107,7 +106,7 @@ def create_class():
         return Response(json.dumps(response) , 500, mimetype="application/json")
 
 @bp.get('/class')
-def get_class():
+def get_class():  #send grader id "?grader=id" 
     
     query_params = request.args.to_dict()
 
@@ -119,11 +118,11 @@ def get_class():
 
 
     query = Class.query.filter_by(**filters)
-    result = query.first()  
+    result = query.first()
     if result:
-        return jsonify(result.to_dict()), 201
+        return jsonify(result.to_dict()), 200
     else:
-        return Response(json.dumps({"error": "User not found"}), 404,mimetype="application/json")
+        return jsonify({"error": "Class not found"}), 404
 
 
 @bp.post('/assignment')
@@ -147,7 +146,7 @@ def create_assignment():
 
 #create api frecieving class id and sending all the assignments linked to it
 
-@bp.get('/assignment')
+@bp.get('/assignment') #send class_id and get all assignments
 def get_assignment():
     
     query_params = request.args.to_dict()
@@ -160,10 +159,14 @@ def get_assignment():
 
 
     query = Assignment.query.filter_by(**filters)
-    result = query.first()  
-
-    if result:
-        return jsonify(result.to_dict()), 200
+    
+    resulted_arr = []
+    for assignment in query:
+        resulted_arr.append(assignment.to_dict())
+    
+    if resulted_arr:
+        dict1 = {"assignemnts":resulted_arr}
+        return jsonify(dict1), 200
     else:
         return jsonify({"error": "User not found"}), 404
 
@@ -176,12 +179,12 @@ def create_submission():
         "file_url":"required",
         "assignment":"required"
     }
-
+    
     if verify_data(schema,data):
         new_row = Submission(**data)
         db.session.add(new_row)
         db.session.commit()
-        return Response(json.dumps(new_row) , 200, mimetype="application/json")
+        return jsonify(new_row.to_dict()), 200
     else:
         response = {"Error_code":"Data invalid"}
         return Response(json.dumps(response) , 500, mimetype="application/json")
