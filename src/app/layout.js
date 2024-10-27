@@ -2,12 +2,10 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { getServerSession } from "next-auth";
 import { authOptions } from "./api/auth/[...nextauth]/route";
-// import UserPage from "./userPage/[username]/page";
 import Navbar from "./components/Navbar";
 import LoggedInHeader from "./components/LoggedInHeader";
-import Tabs from "./components/Tabs";
-
-
+import GraderPage from "../app/graderPage/[graderPage]/page";
+import UserPage from "../app/userPage/[userPage]/page";
 
 const geistSans = localFont({
 	src: "./fonts/GeistVF.woff",
@@ -26,24 +24,19 @@ export const metadata = {
 };
 
 async function getuserid(useremail) {
-	fetch("http://localhost:5000/get_user_id?email=" + userid, {
-		method: "GET"
-	
+	fetch("http://localhost:5000/get_user_id?email=" + useremail, {
+		method: "GET",
 	})
 		.then((res) => res.json())
 		.then((data) => {
 			console.log(data);
 			return data;
-			
 		});
 }
 
-
-
 async function checkgrader(userid) {
 	fetch("http://localhost:5000/grader?id=" + userid, {
-		method: "GET"
-	
+		method: "GET",
 	})
 		.then((res) => res.json())
 		.then((data) => {
@@ -52,21 +45,19 @@ async function checkgrader(userid) {
 				return "grader";
 			} else {
 				return "student";
-				c
+				c;
 			}
 		});
 }
-
-
 
 export default async function RootLayout({ children }) {
 	const session = await getServerSession(authOptions);
 	const user = session?.user;
 	const username = user?.name;
 	const email = user?.email;
-	
-	
-	const role =  await checkgrader(await getuserid(email));
+
+	const role = "user";
+	// const role =  await checkgrader(await getuserid(email));
 	return (
 		<html lang="en">
 			<body
@@ -75,8 +66,8 @@ export default async function RootLayout({ children }) {
 				{session && (
 					<div className="">
 						<LoggedInHeader />
-						<Tabs role={role} username={username}/>
-						{/* <UserPage /> */}
+						{role === "grader" && <GraderPage />}
+						{role === "user" && <UserPage username={username} />}
 					</div>
 				)}
 				{!session && (

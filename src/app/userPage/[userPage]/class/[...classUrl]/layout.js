@@ -3,7 +3,7 @@ import { useRouter, usePathname} from "next/navigation";
 import Link from "next/link";
 import { getServerSession } from "next-auth";
 
-export  default async function ClassLayout() {
+export  default function ClassLayout({}) {
     console.log("heakjwjskda");
     const pathname = usePathname();
     const parts = pathname.split("/");
