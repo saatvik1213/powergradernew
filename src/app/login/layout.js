@@ -5,6 +5,7 @@ import { client } from "../database";
 
 import react, {useState} from 'react'
 export default function LoginPage({ onClose }) {
+    const [error, setError] = useState('');
   const router = useRouter();
   const handleLogin = (e) => {
     e.preventDefault();
@@ -17,6 +18,10 @@ export default function LoginPage({ onClose }) {
       if (user.role === "Grader"){
         router.push(`/userPage/${username}`);
       }
+      else if (user.role === "Owner"){
+        
+        router.push(`/ownerPage/`);
+      }
       // Respond with the result rows
       // if (result.rows.length === 0) {
       //   return res.status(404).json({ error: 'User not found' });
@@ -26,7 +31,7 @@ export default function LoginPage({ onClose }) {
     } 
     catch (error) {
       console.error('Database Error:', error);
-      // res.status(500).json({ error: 'Database retrieval error' });
+      setError('Usernotfound');
     }
     
 
@@ -84,6 +89,10 @@ export default function LoginPage({ onClose }) {
 
         <p className="mt-4 text-gray-600">
           Don’t have an account? <a href="/signup" className="text-blue-600">Sign Up</a>
+        </p>
+
+        <p className = "mt-4 text-gray-600" >
+            {error}
         </p>
        
       </div>
