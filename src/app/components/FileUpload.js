@@ -4,7 +4,7 @@ import { useState } from "react";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { storage } from "../../../firebase.js";
 
-export default function FileUpload({ onClose }) {
+export default function FileUpload({ onClose, userid, classId, assignmentId }) {
 	const [file, setFile] = useState(null);
 	const [url, setUrl] = useState("");
 
@@ -18,6 +18,7 @@ export default function FileUpload({ onClose }) {
 			await uploadBytes(storageRef, file);
 			const downloadURL = await getDownloadURL(storageRef);
 			setUrl(downloadURL);
+			// POST to db
 			console.log(url);
 			onClose();
 		}

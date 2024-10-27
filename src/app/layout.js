@@ -29,7 +29,7 @@ async function getuserid(useremail) {
 		.then((res) => res.json())
 		.then((data) => {
 			console.log(data);
-			return data;
+			return data.user;
 		});
 }
 

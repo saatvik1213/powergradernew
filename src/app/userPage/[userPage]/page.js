@@ -14,6 +14,7 @@ export default function UserPage({ username, userid }) {
 
 	const [selectedClass, setSelectedClass] = useState(classes[0].id);
 	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [selectedAssignmentId, setSelectedAssignmentId] = useState(null);
 
 	const handleClassClick = (classId) => {
 		setSelectedClass(classId); // Update state with selected class ID
@@ -75,7 +76,12 @@ export default function UserPage({ username, userid }) {
 									<button
 										type="button"
 										className="px-4 py-2 text-sm font-medium text-white bg-green-500 rounded-lg hover:bg-green-600"
-										onClick={() => setIsModalOpen(true)}
+										onClick={() => {
+											setSelectedAssignmentId(
+												assignment.id
+											);
+											setIsModalOpen(true);
+										}}
 									>
 										Upload
 									</button>
@@ -93,7 +99,12 @@ export default function UserPage({ username, userid }) {
 				</div>
 			</div>
 			<Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-				<FileUpload onClose={() => setIsModalOpen(false)} />
+				<FileUpload
+					onClose={() => setIsModalOpen(false)}
+					userid={userid}
+					classId={selectedClass}
+					assignmentId={selectedAssignmentId}
+				/>
 			</Modal>
 		</div>
 	);
