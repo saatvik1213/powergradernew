@@ -13,6 +13,9 @@ class Users(db.Model):
     def __repr__(self):
         return f'<User "{self.id}">'
     
+    def to_dict(self):
+        return {column.name: getattr(self, column.name) for column in self.__table__.columns}
+    
 class Class(db.Model):
     __tablename__ = "class"
     id = db.Column(db.Integer(),primary_key=True)
@@ -21,6 +24,9 @@ class Class(db.Model):
     admin =  db.Column(db.Integer(), db.ForeignKey("users.id"))
     created_at = db.Column(db.DateTime, default=lambda: datetime.now(timezone.utc))
     updated_at = db.Column(db.DateTime, onupdate=lambda: datetime.now(timezone.utc))
+    
+    def to_dict(self):
+        return {column.name: getattr(self, column.name) for column in self.__table__.columns}
     
 
     def __repr__(self):
@@ -34,6 +40,9 @@ class Assignment(db.Model):
     created_at = db.Column(db.DateTime, default=lambda: datetime.now(timezone.utc))
     updated_at = db.Column(db.DateTime, onupdate=lambda: datetime.now(timezone.utc))
 
+    def to_dict(self):
+        return {column.name: getattr(self, column.name) for column in self.__table__.columns}
+
     def __repr__(self):
         return f'<Assignment "{self.id}">'
     
@@ -45,6 +54,9 @@ class Submission(db.Model):
     file_url = db.Column(db.String())
     created_at = db.Column(db.DateTime, default=lambda: datetime.now(timezone.utc))
     updated_at = db.Column(db.DateTime, onupdate=lambda: datetime.now(timezone.utc))
+    
+    def to_dict(self):
+        return {column.name: getattr(self, column.name) for column in self.__table__.columns}
     
 
     def __repr__(self):

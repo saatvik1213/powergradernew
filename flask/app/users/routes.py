@@ -57,15 +57,17 @@ def get_user():
 
 @bp.post('/set_grader')
 def set_grader():
-    data = request.json
+    data = request.get_json()
     schema = {
         "name": "required",   
         "email":"required",
         "class_id":"required"
     }
     data["role"] = "grader"
-
-    if verify_data(schema,json):
+    
+    if verify_data(schema,data):
+        class_id = data['class_id']
+        del data['class_id']
         new_row = Users(**data)
         db.session.add(new_row)
         db.session.commit()
@@ -74,7 +76,7 @@ def set_grader():
         return Response(json.dumps(response) , 500, mimetype="application/json")
 
     
-    _class = Class.query.filter_by(Class.id == data["class_id"]).first()
+    _class = Class.query.filter_by(id = class_id).first()
     if not users:
         response = {"Error_code":"Class Not Found"}
     if _class:
@@ -118,9 +120,8 @@ def get_class():
 
     query = Class.query.filter_by(**filters)
     result = query.first()  
-
     if result:
-        return Response(json.dumps(result), 200,mimetype="application/json")
+        return jsonify(result.to_dict()), 201
     else:
         return Response(json.dumps({"error": "User not found"}), 404,mimetype="application/json")
 
