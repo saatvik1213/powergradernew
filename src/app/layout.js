@@ -25,8 +25,10 @@ export const metadata = {
 
 export default async function RootLayout({ children }) {
 	const session = await getServerSession(authOptions);
-	const user = session?.user;
-	const role = "grader";
+	const username = session?.user.name;
+	const emailId = session?.user.email;
+	// GET role using emailId
+	const role = "user";
 
 	return (
 		<html lang="en">
@@ -36,7 +38,7 @@ export default async function RootLayout({ children }) {
 				{session && (
 					<div className="">
 						<LoggedInHeader />
-						<Tabs role={role} />
+						<Tabs role={role} username={username}/>
 						{/* <UserPage /> */}
 					</div>
 				)}

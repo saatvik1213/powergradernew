@@ -3,10 +3,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "../../api/auth/[...nextauth]/route";
 import Classbox from "../../components/classes"; // Adjust path if necessary
 
-export default async function UserPage() {
-	const session = await getServerSession(authOptions);
-	const username = session?.user.name;
-	const id = session?.user.email;
+export default function UserPage({username}) {
 
 	// Sample classes data (replace with actual data or fetch from DB)
 	const classes = [

@@ -1,18 +1,20 @@
 "use client";
 import { useState } from "react";
-import GraderPage from "../[...graderPage]/GraderPage";
+import GraderPage from "../graderPage/[...graderPage]/GraderPage";
 import UserPage from "../userPage/[username]/page";
+import { useRouter } from "next/navigation";
 
-export default function Tabs({ role }) {
+export default function Tabs({ role, username }) {
 	const [activeTab, setActiveTab] = useState("Grader");
+	const router = useRouter();
 
-	if (role !== "grader") {
-		return null; // Only show for users with "grader" role
-	}
+	// if (role !== "grader") {
+	// 	<UserPage />;
+	// }
 
 	return (
 		<div>
-			<div className="flex space-x-4 border-b">
+			{/* <div className="flex space-x-4 border-b">
 				<button
 					className={`px-4 py-2 ${
 						activeTab === "Grader"
@@ -33,11 +35,11 @@ export default function Tabs({ role }) {
 				>
 					User
 				</button>
-			</div>
+			</div> */}
 
 			<div className="p-4">
-				{activeTab === "Grader" && <GraderPage />}
-				{activeTab === "User" && <UserPage />}
+				{role === "grader" && <GraderPage />}
+				{role === "user" && <UserPage username={username}/>}
 			</div>
 		</div>
 	);
