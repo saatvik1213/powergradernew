@@ -35,6 +35,16 @@
 
 ### Key Requirements:
 
+| **Requirement**              | **Description**                                                                                              |
+|------------------------------|--------------------------------------------------------------------------------------------------------------|
+| **User Authentication**      | Course administrators, students, and graders must be able to log in to the platform.                         |
+| **Assignment Submission**    | Students should be able to submit written assignments in various formats (e.g., PDF, DOCX).                  |
+| **Automated Grading Engine** | The application must implement an AI-powered algorithm to grade assignments.                                 |
+| **Normal Distribution**      | The algorithm should apply a grading curve after processing all submissions.                                                      |
+| **Feedback Mechanism**       | Users should receive automated feedback based on grading criteria, including suggestions for improvement.    |
+| **Customizable Rubrics**     | Instructors should be able to define specific grading rubrics and criteria for different assignments.        |
+| **Analytics Dashboard**      | Provide an interface for instructors to view analytics on student performance and assignment submissions.    |
+
 ### High-Level Design:
 
 #### Use Cases
