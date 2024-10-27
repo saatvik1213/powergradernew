@@ -87,23 +87,21 @@ async function createuser(useremail, username, classid)
 		});
 }
 
-
-
 async function checkgrader(userid) {
-	fetch("http://localhost:5000/grader?id=" + userid, {
-		method: "GET"
-	
-	})
-		.then((res) => res.json())
-		.then((data) => {
-			console.log(data);
-			if (data.role === "grader") {
-				return "grader";
-			} else {
-				return "student";
-				c
-			}
-		});
+    try {
+        const response = await fetch(`http://localhost:5000/grader?id=${userid}`, {
+            method: "GET"
+        });
+
+        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+
+        const data = await response.json();
+        console.log("Grader status:", data.grader);
+        return data.grader === true; // Returns true if grader, false otherwise
+    } catch (error) {
+        console.error("Error checking grader status:", error);
+        return false; // Return false if there was an error
+    }
 }
 
 
@@ -113,11 +111,16 @@ export default async function RootLayout({ children }) {
 	const user = session?.user;
 	const username = user?.name;
 	const email = user?.email;
-	var classid = await createClass("test", "1");
-	classid = classid.id;
+
+	var role = "";
 	const userid = await getuserid(email);
 	console.log( await userid);
-	const role =  await checkgrader(userid);
+	var grader =await checkgrader(userid)
+	if ( grader == true)
+	{
+		console.log("Grader");
+		role = "grader";
+	}
 	console.log(role);
 	return (
 		<html lang="en">

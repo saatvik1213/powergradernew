@@ -15,7 +15,7 @@ def users():
             if users.role  == "grader":
                 data = True
 
-        response = {request.args["id"]:data}
+        response = {"grader":data}
         return Response(json.dumps(response) , 200, mimetype="application/json")
     except:
         return Response({'error_code':"500"}, 500, mimetype="application/json")
