@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useState } from "react";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
@@ -7,6 +7,7 @@ import { storage } from "../../../firebase.js";
 export default function FileUpload() {
 	const [file, setFile] = useState(null);
 	const [url, setUrl] = useState("");
+	const [fileLocation, setFileLocation] = useState("");
 
 	const handleFileChange = (e) => {
 		setFile(e.target.files[0]);
@@ -18,6 +19,8 @@ export default function FileUpload() {
 			await uploadBytes(storageRef, file);
 			const downloadURL = await getDownloadURL(storageRef);
 			setUrl(downloadURL);
+			setFileLocation(downloadURL);
+			console.log(fileLocation);
 		}
 	};
 

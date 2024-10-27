@@ -1,7 +1,4 @@
-import Link from "next/link";
-import { getServerSession } from "next-auth";
-import { authOptions } from "../../api/auth/[...nextauth]/route";
-import Classbox from "../../components/classes"; // Adjust path if necessary
+import Classbox from "../../components/Classbox"; // Adjust path if necessary
 
 export default function UserPage({username}) {
 

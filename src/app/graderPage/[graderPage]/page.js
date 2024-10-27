@@ -110,7 +110,7 @@ export default function GraderPage() {
 	};
 
 	return (
-		<div>
+		<div className="px-8">
 			<h2 className="text-2xl font-semibold mb-4">
 				{isEditing ? "Edit Assignment" : "Create a New Assignment"}
 			</h2>
