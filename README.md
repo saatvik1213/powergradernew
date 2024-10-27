@@ -31,6 +31,22 @@
 
 ### [Link to Grader UI Video Demonstration](https://youtu.be/bIsMBDr6Y_U)
 
+### Tech Stack
+
+> **Next.js**: This project was created with the Next.JS React framework for building full-stack applications.
+>
+> **PostgreSQL**: This project uses PostgreSQL to integrate a database that manages user roles and submission,
+> information, along with grades and paths to the stored files.
+>
+> **Firebase**: Firebase serves as the file storage system for assignment submissions.
+>
+> **Next-auth**: We utilize NextAuth to enable secure session management, supporting Google authentication.
+>
+> **Gemini**: This project integrates Google’s Generative AI framework, Gemini, to analyze files
+> and generate responses based on a grading rubric.
+>
+> **Flask**: Flask is integrated into the project to facilitate API calls to the database.
+
 ## Project Plan
 
 ### Key Requirements:
@@ -78,24 +94,6 @@ The physical ER diagram details the actual implementation of our database system
 data types, and relationships.
 
 ![5_er_diagram_2](/images/5_er_diagram_2.png)
-
-### Implementation
-
-#### Tech Stack
-
-> **Next.js**: This project was created with the Next.JS React framework for building full-stack applications.
->
-> **PostgreSQL**: This project uses PostgreSQL to integrate a database that manages user roles and submission,
-> information, along with grades and paths to the stored files.
-> 
-> **Firebase**: Firebase serves as the file storage system for assignment submissions.
-> 
-> **Next-auth**: We utilize NextAuth to enable secure session management, supporting Google authentication.
-> 
-> **Gemini**: This project integrates Google’s Generative AI framework, Gemini, to analyze files 
-> and generate responses based on a grading rubric.
-> 
-> **Flask**: Flask is integrated into the project to facilitate API calls to the database.
 
 ## Getting Started
 
