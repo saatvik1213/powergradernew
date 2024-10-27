@@ -9,7 +9,7 @@ export default function Classbox({ className, username }) {
             <h2 className="text-xl font-semibold mb-4">{className}</h2>
 
             {/* View Details Link */}
-            <Link href={`/userpage/${encodeURIComponent(username)}/class/${classUrl}`} className="text-blue-600 hover:underline">
+            <Link href={`/userPage/${encodeURIComponent(username)}/class/${classUrl}`} className="text-blue-600 hover:underline">
                 View Details
             </Link>
         </div>
