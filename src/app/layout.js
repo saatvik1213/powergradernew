@@ -78,7 +78,7 @@ export default async function RootLayout({ children }) {
 					<div className="">
 						<LoggedInHeader />
 						{role === "grader" && <GraderPage />}
-						{role === "user" && <UserPage username={username} />}
+						{role === "user" && <UserPage username={username} userid={userid}/>}
 					</div>
 				)}
 				{!session && (

@@ -1,23 +1,15 @@
-import Link from "next/link";
-import AssignmentsPage from "../userPage/[userPage]/class/[...classUrl]/page";
-
-export default function Classbox({ className, username }) {
-	const classUrl = className.replace(/\s+/g, "");
-
+export default function Classbox({ className, onClick, isSelected }) {
 	return (
-		<div className="p-6 bg-white shadow-md rounded-lg border border-gray-200 text-center">
-			{/* Class Name */}
+		<div
+			className={`p-6 bg-white shadow-md rounded-lg border text-center cursor-pointer transition-all duration-200 ${
+				isSelected
+					? "border-blue-500 ring-2 ring-blue-300"
+					: "border-gray-200"
+			}`}
+			onClick={onClick}
+		>
 			<h2 className="text-xl font-semibold mb-4">{className}</h2>
-
-			{/* View Details Link */}
-			<Link
-				href={`userPage/${encodeURIComponent(
-					username
-				)}/class/${classUrl}`}
-				className="text-blue-600 hover:underline"
-			>
-				View Details
-			</Link>
+			View Details
 		</div>
 	);
 }
