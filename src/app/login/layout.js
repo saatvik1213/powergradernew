@@ -36,9 +36,9 @@ export default function LoginPage({ onClose }) {
     
 
     // Perform login logic here (e.g., authentication)
-     // Assume the username is "johndoe"// needs to be pulled from database 
+    var username = "johndoe"; // Assume the username is "johndoe"// needs to be pulled from database 
     // After successful login, navigate to [userPage]
- 
+    router.push(`/userpage/${username}`);
     onClose(); // Close the login modal if needed
   };
 

@@ -2,21 +2,9 @@
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
-import {usePathname} from "next/navigation"
-import { useEffect, useState } from "react";
-
-
-
 export default function Layout({ children }) {
-  const path = usePathname();
-  const [username, setUsername] = useState("");
-
-  useEffect(() => {
-    // Split the path and get the last segment as the username
-    const parts = path.split("/");
-    const user = parts[parts.length - 1];
-    setUsername(user.charAt(0).toUpperCase() + user.slice(1)); // Capitalize the first letter if desired
-  }, [path]);
+  const router = useRouter();
+  const username = router.query?.username; // Use optional chaining to safely access username
 
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col">
