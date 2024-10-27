@@ -7,17 +7,20 @@
 
 ### Project Description:
 
-    PowerGrader is a web application for automated grading in written assignments submitted to online educational
-    platforms. With the rise of online learning and the widespread use of online course management systems, there
-    is an increasing need for providing the functionality to assess students' learning automatically. Nowadays,
-    available tools provide support for multiple choice exams or embedded coding, but they do not support automated
-    grading for written submissions. While university courses may require human graders for written submissions to ensure
-    the right criteria is applied, free online courses may benefit from an automated grader like PowerGrader to
-    offer the course administrator the option to request written assignments from students. 
+    PowerGrader is a web application for automated grading in written assignments submitted 
+    to online educational platforms. With the rise of online learning and the widespread use 
+    of online course management systems, there is an increasing need for providing the
+    functionality to assess students' learning automatically. Nowadays, available tools 
+    provide support for multiple choice exams or embedded coding, but they do not support
+    automated grading for written submissions. While university courses may require human 
+    graders for written submissions to ensure the right criteria is applied, free 
+    online courses may benefit from an automated grader like PowerGrader to offer the course
+    administrator the option to request written assignments from students. 
 
-    The implementation of automated grading for written submissions represents a significant advancement in online
-    education, paving the way for its potential application in university courses. This shift could lead to improved
-    cost efficiency in grading tasks, allowing educators to allocate more time to instructional activities and student 
+    The implementation of automated grading for written submissions represents a significant 
+    advancement in online education, paving the way for its potential application in 
+    university courses. This shift could lead to improved cost efficiency in grading tasks,
+    allowing educators to allocate more time to instructional activities and student 
     engagement.
 
 ### Key Requirements:
