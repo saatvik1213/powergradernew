@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../../api/auth/[...nextauth]/route";
-import Classbox from "../../components/classess"; // Adjust path if necessary
+import Classbox from "../../components/classes"; // Adjust path if necessary
 
 export default async function UserPage() {
   const session = await getServerSession(authOptions);
