@@ -2,8 +2,10 @@
 #### Project: PowerGrader
 #### Team: SSGA
 #### Date: October 26th, 2024
-#### Team Members: Gonzalo Allendes, Saatvik Choudhary, Swayam Mehda, Anadi Dewan
+#### Team Members: Gonzalo Allendes, Saatvik Choudhary, Anadi Dewan, Swayam Mehda
 #### Chosen Track: SODA: Develop software that can scale and improve accessibility to education.
+
+## Overview
 
 ### Project Description:
 
@@ -23,17 +25,17 @@
     allowing educators to allocate more time to instructional activities and student 
     engagement.
 
-### Key Requirements:
+### [Project Presentation]()
 
-| **Requirement**              | **Description**                                                                                              |
-|------------------------------|--------------------------------------------------------------------------------------------------------------|
-| **User Authentication**      | Course administrators, students, and graders must be able to log in to the platform.                         |
-| **Assignment Submission**    | Students should be able to submit written assignments in various formats (e.g., PDF, DOCX).                  |
-| **Automated Grading Engine** | The application must implement an AI-powered algorithm to grade assignments.                                 |
-| **Normal Distribution**      | The algorithm should apply a grading curve after processing all submissions.                                                      |
-| **Feedback Mechanism**       | Users should receive automated feedback based on grading criteria, including suggestions for improvement.    |
-| **Customizable Rubrics**     | Instructors should be able to define specific grading rubrics and criteria for different assignments.        |
-| **Analytics Dashboard**      | Provide an interface for instructors to view analytics on student performance and assignment submissions.    |
+### [Link to Student UI Video Demonstration](https://youtu.be/aIbw28HNHtk)
+
+### [Link to Grader UI Video Demonstration]()
+
+### [Link to Admin UI Video Demonstration]()
+
+## Project Plan
+
+### Key Requirements:
 
 ### High-Level Design:
 
