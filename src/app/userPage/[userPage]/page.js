@@ -1,6 +1,8 @@
 "use client";
 import Classbox from "../../components/Classbox";
 import { useState } from "react";
+import FileUpload from "@/app/components/FileUpload";
+import Modal from "@/app/components/Modal";
 
 export default function UserPage({ username, userid }) {
 	// GET using user_id
@@ -11,6 +13,7 @@ export default function UserPage({ username, userid }) {
 	];
 
 	const [selectedClass, setSelectedClass] = useState(classes[0].id);
+	const [isModalOpen, setIsModalOpen] = useState(false);
 
 	const handleClassClick = (classId) => {
 		setSelectedClass(classId); // Update state with selected class ID
@@ -22,6 +25,7 @@ export default function UserPage({ username, userid }) {
 		{ id: 1, class_id: "101", name: "Assignment 1", grade: "A" },
 		{ id: 2, class_id: "101", name: "Assignment 2", grade: "B+" },
 		{ id: 3, class_id: "101", name: "Assignment 3", grade: "Pending" },
+		{ id: 3, class_id: "101", name: "Assignment 4", grade: "Pending" },
 	];
 
 	return (
@@ -43,9 +47,7 @@ export default function UserPage({ username, userid }) {
 
 			<div className="p-6">
 				<h1 className="text-2xl font-semibold mb-4">{`${username}'s Assignments in ${
-					selectedClass
-						? classes.find((c) => c.id === selectedClass)?.name
-						: "Select a class"
+					classes.find((c) => c.id === selectedClass)?.name
 				}`}</h1>
 				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 					{assignments.map((assignment) => (
@@ -73,6 +75,7 @@ export default function UserPage({ username, userid }) {
 									<button
 										type="button"
 										className="px-4 py-2 text-sm font-medium text-white bg-green-500 rounded-lg hover:bg-green-600"
+										onClick={() => setIsModalOpen(true)}
 									>
 										Upload
 									</button>
@@ -89,6 +92,9 @@ export default function UserPage({ username, userid }) {
 					))}
 				</div>
 			</div>
+			<Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+				<FileUpload onClose={() => setIsModalOpen(false)} />
+			</Modal>
 		</div>
 	);
 }

@@ -4,10 +4,9 @@ import { useState } from "react";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { storage } from "../../../firebase.js";
 
-export default function FileUpload() {
+export default function FileUpload({ onClose }) {
 	const [file, setFile] = useState(null);
 	const [url, setUrl] = useState("");
-	const [fileLocation, setFileLocation] = useState("");
 
 	const handleFileChange = (e) => {
 		setFile(e.target.files[0]);
@@ -19,8 +18,8 @@ export default function FileUpload() {
 			await uploadBytes(storageRef, file);
 			const downloadURL = await getDownloadURL(storageRef);
 			setUrl(downloadURL);
-			setFileLocation(downloadURL);
-			console.log(fileLocation);
+			console.log(url);
+			onClose();
 		}
 	};
 
@@ -37,14 +36,6 @@ export default function FileUpload() {
 			>
 				Upload File
 			</button>
-			{url && (
-				<p className="mt-4 text-blue-600">
-					File uploaded!{" "}
-					<a href={url} target="_blank">
-						Download it here
-					</a>
-				</p>
-			)}
 		</div>
 	);
 }
