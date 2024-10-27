@@ -25,13 +25,11 @@
     allowing educators to allocate more time to instructional activities and student 
     engagement.
 
-### [Project Presentation]()
+### [Project Presentation](https://gamma.app/docs/PowerGrader-29m054unrf8q5xa)
 
 ### [Link to Student UI Video Demonstration](https://youtu.be/aIbw28HNHtk)
 
-### [Link to Grader UI Video Demonstration]()
-
-### [Link to Admin UI Video Demonstration]()
+### [Link to Grader UI Video Demonstration](https://youtu.be/bIsMBDr6Y_U)
 
 ## Project Plan
 
