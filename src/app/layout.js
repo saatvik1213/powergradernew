@@ -23,9 +23,8 @@ export const metadata = {
 	description: "Automate the grading process with PowerGrader",
 };
 async function getuserid(useremail) {
-	fetch("http://localhost:5000/get_user_id?email=" + userid, {
-		method: "GET"
-	
+	fetch("http://localhost:5000/get_user_id?email=" + useremail, {
+		method: "GET",
 	})
 		.then((res) => res.json())
 		.then((data) => {
@@ -35,20 +34,24 @@ async function getuserid(useremail) {
 }
 
 async function checkgrader(userid) {
-    try {
-        const response = await fetch(`http://localhost:5000/grader?id=${userid}`, {
-            method: "GET"
-        });
+	try {
+		const response = await fetch(
+			`http://localhost:5000/grader?id=${userid}`,
+			{
+				method: "GET",
+			}
+		);
 
-        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+		if (!response.ok)
+			throw new Error(`HTTP error! Status: ${response.status}`);
 
-        const data = await response.json();
-        console.log("Grader status:", data.grader);
-        return data.grader === true; // Returns true if grader, false otherwise
-    } catch (error) {
-        console.error("Error checking grader status:", error);
-        return false; // Return false if there was an error
-    }
+		const data = await response.json();
+		console.log("Grader status:", data.grader);
+		return data.grader === true; // Returns true if grader, false otherwise
+	} catch (error) {
+		console.error("Error checking grader status:", error);
+		return false; // Return false if there was an error
+	}
 }
 
 export default async function RootLayout({ children }) {
@@ -57,12 +60,11 @@ export default async function RootLayout({ children }) {
 	const username = user?.name;
 	const email = user?.email;
 
-	var role = "";
+	var role = "user";
 	const userid = await getuserid(email);
-	console.log( await userid);
-	var grader =await checkgrader(userid)
-	if ( grader == true)
-	{
+	console.log(await userid);
+	var grader = await checkgrader(userid);
+	if (grader == true) {
 		console.log("Grader");
 		role = "grader";
 	}
