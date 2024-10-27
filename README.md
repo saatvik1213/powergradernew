@@ -14,13 +14,13 @@
     of online course management systems, there is an increasing need for providing the
     functionality to assess students' learning automatically. Nowadays, available tools 
     provide support for multiple choice exams or embedded coding, but they do not support
-    automated grading for written submissions. While university courses may require human 
-    graders for written submissions to ensure the right criteria is applied, free 
-    online courses may benefit from an automated grader like PowerGrader to offer the course
-    administrator the option to request written assignments from students. 
+    automated grading for written submissions. While universities may benefit from freeing
+    educators to focus on high-impact teaching, free online courses may benefit from an 
+    automated grader like PowerGrader to offer the course administrator the option to 
+    request written assignments from students. 
 
     The implementation of automated grading for written submissions represents a significant 
-    advancement in online education, paving the way for its potential application in 
+    advancement in online education, paving the way for its large scale application in 
     university courses. This shift could lead to improved cost efficiency in grading tasks,
     allowing educators to allocate more time to instructional activities and student 
     engagement.
@@ -68,7 +68,7 @@ The sequence diagrams below show the details of the workflow in use cases ```Log
 #### Conceptual ER Diagram
 
 The conceptual ER diagram provides a visual representation of the internal structure and
-relationships within our database system.
+relationships within our database system for storing user roles and submission information.
 
 ![4_er_diagram_1](/images/4_er_diagram_1.png)
 
@@ -80,6 +80,22 @@ data types, and relationships.
 ![5_er_diagram_2](/images/5_er_diagram_2.png)
 
 ### Implementation
+
+#### Tech Stack
+
+> **Next.js**: This project was created with the Next.JS React framework for building full-stack applications.
+>
+> **PostgreSQL**: This project uses PostgreSQL to integrate a database that manages user roles and submission,
+> information, along with grades and paths to the stored files.
+> 
+> **Firebase**: Firebase serves as the file storage system for assignment submissions.
+> 
+> **Next-auth**: We utilize NextAuth to enable secure session management, supporting Google authentication.
+> 
+> **Gemini**: This project integrates Google’s Generative AI framework, Gemini, to analyze files 
+> and generate responses based on a grading rubric.
+> 
+> **Flask**: Flask is integrated into the project to facilitate API calls to the database.
 
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
