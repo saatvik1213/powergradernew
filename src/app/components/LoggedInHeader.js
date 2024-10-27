@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { getServerSession } from "next-auth";
 import { authOptions } from "../api/auth/[...nextauth]/route";
-import LogoutLink from "./logoutLink";
+import LogoutLink from "./LogoutLink";
 import Link from "next/link";
 
 export default async function LoggedInHeader() {

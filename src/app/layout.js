@@ -2,9 +2,10 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { getServerSession } from "next-auth";
 import { authOptions } from "./api/auth/[...nextauth]/route";
-import UserPage from "./userPage/[username]/page";
+// import UserPage from "./userPage/[username]/page";
 import Navbar from "./components/Navbar";
 import LoggedInHeader from "./components/LoggedInHeader";
+import Tabs from "./components/Tabs";
 
 const geistSans = localFont({
 	src: "./fonts/GeistVF.woff",
@@ -24,6 +25,8 @@ export const metadata = {
 
 export default async function RootLayout({ children }) {
 	const session = await getServerSession(authOptions);
+	const user = session?.user;
+	const role = "grader";
 
 	return (
 		<html lang="en">
@@ -33,7 +36,8 @@ export default async function RootLayout({ children }) {
 				{session && (
 					<div className="">
 						<LoggedInHeader />
-						<UserPage />
+						<Tabs role={role} />
+						{/* <UserPage /> */}
 					</div>
 				)}
 				{!session && (
