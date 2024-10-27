@@ -25,6 +25,21 @@ export const metadata = {
 	description: "Automate the grading process with PowerGrader",
 };
 
+async function getuserid(useremail) {
+	fetch("http://localhost:5000/get_user_id?email=" + userid, {
+		method: "GET"
+	
+	})
+		.then((res) => res.json())
+		.then((data) => {
+			console.log(data);
+			return data;
+			
+		});
+}
+
+
+
 async function checkgrader(userid) {
 	fetch("http://localhost:5000/grader?id=" + userid, {
 		method: "GET"
@@ -51,7 +66,7 @@ export default async function RootLayout({ children }) {
 	const email = user?.email;
 	
 	
-	const role =  await checkgrader("1");
+	const role =  await checkgrader(await getuserid(email));
 	return (
 		<html lang="en">
 			<body
